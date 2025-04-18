@@ -1,0 +1,275 @@
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body{
+      height: 100%;
+    }
+    body {
+      font-family: "Roboto", sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      line-height: 1.6;
+      padding-top: 200px;
+    }
+
+    /* ==============================
+       Navigation Bar
+       ============================== */
+    nav {
+      background-color: #007bff;
+      padding: 10px;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      transition: top 0.3s ease-in-out;
+      z-index: 1000;
+      transition: transform 0.3s ease-in-out;
+      /* Initially visible */
+      transform: translateY(0);
+
+    }
+
+    .logo {
+      text-align: center;
+    }
+
+    img {
+      font-size: 10px;
+      width: 80px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      justify-content: center;
+    }
+    nav ul li {
+      margin: 0 15px;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      background-color: #0056b3;
+    }
+
+    /* ==============================
+       Page & Section Styles
+       ============================== */
+    .page {
+      padding: 20px;
+      display: none;
+    }
+    .page.active {
+      display: block;
+    }
+    h1,
+    h2 {
+      margin-bottom: 15px;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+
+    /* ==============================
+       Form Elements
+       ============================== */
+    select,
+    input[type="number"] {
+      padding: 8px;
+      margin: 5px 10px 5px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 10px 0;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* ==============================
+       Data Tables for Recorded Data
+       ============================== */
+    .data-table {
+      width: 100%;
+      margin: 15px 0;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .data-table th,
+    .data-table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    .data-table th {
+      background-color: #f0f0f0;
+    }
+
+    /* ==============================
+       Value Color Coding
+       ============================== */
+    .value-black {
+      color: #000;
+    }
+    .value-green {
+      color: green;
+    }
+    .value-red {
+      color: red;
+    }
+
+    /* ==============================
+       Chart Container
+       ============================== */
+    .chart-container {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+    }
+
+    /* Hide the hamburger button on larger screens */
+    .menu-btn {
+      display: none;
+      background-color: #333;
+      border: none;
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* The flex container for the whole page */
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Main content fills the available space */
+    .content {
+      flex: 1;
+    }
+
+    /* Footer styling */
+    footer {
+      background-color:#0056b3;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+    }
+
+    #logoutBtn {
+      padding: 10px 15px;
+      background-color: #ffffff;
+      color: #c95f5f;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .logoutBtn {
+      width: 100%;
+      text-align: center;
+    }
+
+    
+    
+    /* Mobile styles */
+    @media (max-width: 768px){
+      nav {
+        width:100%;
+        margin:0;
+        margin-left:-10px;
+      }
+      .buttons {
+        width: 100%;
+        display: inline-flex;
+        justify-content: space-between;
+      }
+      .logoutBtn {
+        width: 100px;
+      }
+      .menu-btn {
+        display: block;
+      }
+      .logo {
+        text-align: end;
+        width: 100%;
+        display: none;
+      }
+      img {
+        width: 50px;
+        margin-left: 0;
+        display: none;
+      }
+      nav ul {
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease;
+      }
+      nav ul.show {
+        max-height: 300px; /* Increase this value if you add more nav items */
+      }
+      nav ul li {
+        margin: 0;
+        
+        text-align: center;
+      }
+
+      /* ==============================
+       Data Tables for Recorded Data
+       ============================== */
+    .data-table {
+      width: 100%;
+      margin: 15px 0;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .data-table th,
+    .data-table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    /* ==============================
+       Chart Container
+       ============================== */
+    .chart-container {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+    }
+    .content {
+      padding: 10px;
+      flex: 1;
+    }
+    footer {
+      font-size: 14px;
+      padding: 10px;
+    }
+
+    }
+
+    
+

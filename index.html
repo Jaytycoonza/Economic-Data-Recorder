@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Economic Data Tracker</title>
+  <!-- Google Fonts for modern styling -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+  <!-- Chart.js for graphs -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body style="opacity: 0;">
+  <div class="container">
+    <div class="content">
+
+  <!-- ==============================
+       Navigation Bar
+       ============================== -->
+  <nav id="navbar">
+    <div class="buttons">
+      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <div class="logoutBtn"><button id="logoutBtn">Logout</button></div>
+    </div>
+  
+    <div class="logo"><img src="/images/InShot_20250417_185320534.png" alt="logo"></div>
+    <ul id="nav-links">
+      <li><a href="#" onclick="toggleMenu()" class="nav-link active" data-target="home">Home</a></li>
+      <li><a href="#" onclick="toggleMenu()" class="nav-link" data-target="recordData">Record Data</a></li>
+      <li><a href="#" onclick="toggleMenu()" class="nav-link" data-target="visualData">Visual Data</a></li>
+      <li><a href="#" onclick="toggleMenu()" class="nav-link" data-target="compareData">Compare Data</a></li>
+    </ul>
+  </nav>
+
+  <!-- ==============================
+       Page Sections
+       ============================== -->
+
+  <!-- Home Page -->
+  <div id="home" class="page active">
+    <h1>Welcome to the Economic Data Tracker</h1>
+    <p>
+      This website allows you to record economic data, view it in tables with color-coded appreciation/depreciation,
+      visualize the data using interactive graphs, and compare data between different economies. Use the navigation
+      bar above to switch between pages.
+    </p>
+  </div>
+
+  <!-- Record Data Page -->
+  <div id="recordData" class="page">
+    <h2>Record Economic Data</h2>
+    <div>
+      <label for="recordDataType">Data Type:</label>
+      <select id="recordDataType">
+        <option value="GDP">GDP</option>
+        <option value="CPI">CPI</option>
+        <option value="PPI">PPI</option>
+        <option value="IRs">IRs</option>
+        <option value="URs">URs</option>
+      </select>
+
+      <label for="recordCurrency">Currency:</label>
+      <select id="recordCurrency">
+        <option value="USD">USD</option>
+        <option value="GBP">GBP</option>
+        <option value="JPY">JPY</option>
+        <option value="EUR">EUR</option>
+        <option value="AUD">AUD</option>
+        <option value="NZD">NZD</option>
+        <option value="CAD">CAD</option>
+        <option value="ZAR">ZAR</option>
+      </select>
+
+      <label for="recordValue">Value (%):</label>
+      <input type="number" id="recordValue" step="0.01" placeholder="e.g., 2.5" />
+
+      <button onclick="recordData()">Record Data</button>
+    </div>
+
+    <!-- Container where tables for different data type + currency will appear -->
+    <div id="tablesContainer"></div>
+  </div>
+
+  <!-- Visual Data Page -->
+  <div id="visualData" class="page">
+    <h2>Visualize Recorded Data</h2>
+    <div>
+      <label for="visualDataType">Data Type:</label>
+      <select id="visualDataType">
+        <option value="GDP">GDP</option>
+        <option value="CPI">CPI</option>
+        <option value="PPI">PPI</option>
+        <option value="IRs">IRs</option>
+        <option value="URs">URs</option>
+      </select>
+
+      <label for="visualCurrency">Currency:</label>
+      <select id="visualCurrency">
+        <option value="USD">USD</option>
+        <option value="GBP">GBP</option>
+        <option value="JPY">JPY</option>
+        <option value="EUR">EUR</option>
+        <option value="AUD">AUD</option>
+        <option value="NZD">NZD</option>
+        <option value="CAD">CAD</option>
+        <option value="ZAR">ZAR</option>
+      </select>
+
+      <button onclick="viewDataChart()">View Data Graph</button>
+      <button onclick="toggleVisualChartType()">Toggle Graph Type</button>
+    </div>
+    <p id="visualGraphInfo">
+      Graph Type: <span id="visualGraphTypeText">bar</span> chart. Data is in percentages. Monthly data.
+    </p>
+    <div class="chart-container">
+      <canvas id="visualChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Compare Data Page -->
+  <div id="compareData" class="page">
+    <h2>Compare Economic Data Between Economies</h2>
+    <div>
+      <label for="compareDataType">Data Type:</label>
+      <select id="compareDataType">
+        <option value="GDP">GDP</option>
+        <option value="CPI">CPI</option>
+        <option value="PPI">PPI</option>
+        <option value="IRs">IRs</option>
+        <option value="URs">URs</option>
+      </select>
+
+      <label for="compareCurrency1">Currency 1:</label>
+      <select id="compareCurrency1">
+        <option value="USD">USD</option>
+        <option value="GBP">GBP</option>
+        <option value="JPY">JPY</option>
+        <option value="EUR">EUR</option>
+        <option value="AUD">AUD</option>
+        <option value="NZD">NZD</option>
+        <option value="CAD">CAD</option>
+        <option value="ZAR">ZAR</option>
+      </select>
+
+      <label for="compareCurrency2">Currency 2:</label>
+      <select id="compareCurrency2">
+        <option value="USD">USD</option>
+        <option value="GBP">GBP</option>
+        <option value="JPY">JPY</option>
+        <option value="EUR">EUR</option>
+        <option value="AUD">AUD</option>
+        <option value="NZD">NZD</option>
+        <option value="CAD">CAD</option>
+        <option value="ZAR">ZAR</option>
+      </select>
+
+      <button onclick="compareDataChart()">Compare Data</button>
+      <button onclick="toggleCompareChartType()">Toggle Graph Type</button>
+    </div>
+    <p id="compareGraphInfo">
+      Graph Type: <span id="compareGraphTypeText">bar</span> chart. Data is in percentages. Monthly data.
+    </p>
+    <div class="chart-container">
+      <canvas id="compareChart"></canvas>
+    </div>
+  </div>
+ </div>
+  <footer>
+    &copy; 2025 EDT. All rights reserved.
+  </footer>
+</div>
+  <script src="script.js"></script>
+</body>
+</html>
+

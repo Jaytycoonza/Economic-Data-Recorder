@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+  <title>Login - My Website</title>
+  <style>
+    /* Basic styling */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: "Roboto", sans-serif;
+      background-color: #ffffff;
+      padding: 20px;
+    }
+    .login-container {
+      max-width: 400px;
+      margin: 50px auto;
+      background: transparent;
+      padding: 20px;
+      border: none;
+      border-radius: 5px;
+      color: #007bff;
+    }
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .login-container label {
+      display: block;
+      margin-top: 10px;
+    }
+    .login-container input[type="text"],
+    .login-container input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #007bff;
+      border-radius: 3px;
+      background-color:#ffffff;
+      color: #007bff;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .login-container button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: #ffffff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: 400;
+      font-size: 15px;
+    }
+    .message {
+      text-align: center;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .header{
+        text-align: center;
+        display: block;
+        padding: 20px;
+    }
+    img {
+        width: 100px;
+        margin-top: 40px;
+    }
+    
+  </style>
+</head>
+<body>
+    <div class="header">
+        <img src="/images/InShot_20250417_185320534.png" alt="">
+    </div>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <label for="username">Username:</label>
+      <input type="text" id="username" required />
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" required />
+
+      <button type="submit">Login</button>
+    </form>
+    <div id="message" class="message"></div>
+  </div>
+<script>
+  // Check if the user is already logged in.
+    // (For a personal site, this client-side "loggedIn" flag is acceptable,
+    // but remember that it's not secure for sensitive applications.)
+    if (localStorage.getItem("loggedIn") === "true") {
+      window.location.href = "index.html";
+    }
+
+    // Simple "database" with one user's credentials.
+    const users = [
+      { username: "Myusername", password: "Mypassword" }
+    ];
+
+    const loginForm = document.getElementById('loginForm');
+    const messageDiv = document.getElementById('message');
+
+    loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const usernameInput = document.getElementById('username').value;
+    const passwordInput = document.getElementById('password').value;
+
+    // Validate credentials (using your users array)
+    const user = users.find(u => u.username === usernameInput && u.password === passwordInput);
+
+    if (user) {
+      // Optionally, show a success message.
+      messageDiv.style.color = 'green';
+      messageDiv.textContent = 'Login successful!';
+      
+      // Fade out the page
+      document.body.style.opacity = '0';
+      
+      setTimeout(() => {
+        
+        localStorage.setItem("loggedIn", "true");
+        window.location.href = "index.html";
+      }, 500); 
+    } else {
+      messageDiv.style.color = 'red';
+      messageDiv.textContent = 'Invalid username or password.';
+    }
+  });
+  
+</script>
+  
+</body>
+</html>
